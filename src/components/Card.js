@@ -5,7 +5,7 @@ export default class Card extends Component {
   render() {
     return (
       <Wrapper>
-        <CloseIcon><i class="fa fa-close"></i></CloseIcon>
+        <CloseIcon onClick={this.props.closeModal}><i class="fa fa-close"></i></CloseIcon>
         <CloseIcon><i class="fa fa-trash"></i></CloseIcon>
         <p> Task Title </p>
         <SingleLineInput />

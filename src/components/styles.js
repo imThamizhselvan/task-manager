@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-    margin: 0 auto;
     padding: 20px;
-    margin: 10%;
     padding-left: 5%;
     background-color: #f2f2f2;
     -webkit-box-shadow: -1px 9px 15px 0px rgba(0,0,0,0.29);
@@ -15,11 +13,6 @@ export const Wrapper = styled.div`
 export const BoardWrapper = styled.div`
     padding-top: 20px;
     padding-left: 5%;
-    background-color: #f2f2f2;
-    -webkit-box-shadow: -1px 9px 15px 0px rgba(0,0,0,0.29);
-    -moz-box-shadow: -1px 9px 15px 0px rgba(0,0,0,0.29);
-    box-shadow: -1px 9px 15px 0px rgba(0,0,0,0.29);
-    border-radius: 10px;
 `;
 
 export const ListWrapper = styled.div`
@@ -41,6 +34,10 @@ export const CardDescWrapper = styled.div`
     padding-left: 3px;
     border-radius: 10px;
     margin: 20px 1px 20px 1px;
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.29);
+    }
 `;
 
 export const SingleLineInput = styled.input`
