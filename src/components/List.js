@@ -18,40 +18,34 @@ export default class List extends Component {
       modalIsOpen: false,
       tasks: [
         {
-          name:"Learn Angular",
+          name:"Bug Fix",
           category:"wip", 
-          desc: "asdasf",
-          bgcolor: "yellow"
+          desc: "Deployment bug in webpack",
         },  
         {
-          name:"Learn as",
+          name:"Create Layout",
           category:"todo", 
-          desc: "asdasf",
-          bgcolor: "yellow"
+          desc: "Login page design mockup",
         },
         {
-          name:"Learn sa",
+          name:"Project setup",
           category:"todo", 
-          desc: "asdasf",
-          bgcolor: "yellow"
+          desc: "New project setup for client",
         },  
         {
-          name:"asgfasf",
+          name:"Server hosting",
           category:"completed", 
-          desc: "asdasf",
-          bgcolor: "yellow"
+          desc: "hosting the dev server",
         },
         {
-          name:"React", 
+          name:"Migration", 
           category:"wip", 
-          desc: "asdasf",
-          bgcolor:"pink"
+          desc: "Angular to react migration",
         },  
         {
-          name:"Vue", 
+          name:"Software Tracker design", 
           category:"completed", 
-          desc: "asdasf",
-          bgcolor:"skyblue"
+          desc: "end to end delivery",
         }          
       ],
       todo: [], 
@@ -99,7 +93,6 @@ export default class List extends Component {
 
 
   render() {
-    console.log('this', this.props);
     var tasks = { 
       todo: [], 
       wip: [],
@@ -118,7 +111,6 @@ export default class List extends Component {
         </CardDescWrapper>
       );
     })
-    console.log('tasks', tasks);
     return (
       <ListWrapper 
         onDragOver={(e)=>this.onDragOver(e)}

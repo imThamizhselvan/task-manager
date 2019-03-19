@@ -6,7 +6,7 @@ export default class Board extends Component {
   render() {
     return (
         <BoardWrapper>
-            <p> Sample board </p>
+            <p> Task board </p>
             <List title="To do" cat="todo" />
             <List title="Work in Progress" cat="wip" />
             <List title="Completed" cat="completed"/>
