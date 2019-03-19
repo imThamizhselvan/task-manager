@@ -26,6 +26,10 @@ export const ListWrapper = styled.div`
     -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.29);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.29);
     border-radius: 10px;
+    height: 400px;
+    width: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 `;
 
 export const CardDescWrapper = styled.div`

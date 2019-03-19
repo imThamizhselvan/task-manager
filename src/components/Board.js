@@ -7,9 +7,9 @@ export default class Board extends Component {
     return (
         <BoardWrapper>
             <p> Sample board </p>
-            <List title="To do"/>
-            <List title="Work in Progress"/>
-            <List title="Completed"/>
+            <List title="To do" cat="todo" />
+            <List title="Work in Progress" cat="wip" />
+            <List title="Completed" cat="completed"/>
         </BoardWrapper>
     );
   }
