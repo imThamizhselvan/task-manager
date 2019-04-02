@@ -17,9 +17,11 @@ export default class List extends Component {
     super();
     this.state = {
       modalIsOpen: false,
+      currentTask: []
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleEditModal = this.handleEditModal.bind(this);
   }
 
   openModal() {
@@ -30,7 +32,13 @@ export default class List extends Component {
     this.setState({modalIsOpen: false});
   }
 
-  render() {
+  handleEditModal(data) {
+    let task = data;
+    console.log('tasl', task);
+    this.props.openModals(task);
+  }
+
+   render() {
     return (
       <ListWrapper>
         <CloseIcon><i class="fa fa-trash"></i></CloseIcon>
@@ -46,7 +54,7 @@ export default class List extends Component {
           <Card closeModal={this.closeModal} status={this.props.cat} />
         </Modal>
         { this.props.tasks.map((task) =>
-          <CardDescWrapper> 
+          <CardDescWrapper onClick={this.handleEditModal}> 
             <p> {task.title} </p>
             <p> {task.desc} </p>
           </CardDescWrapper>    
