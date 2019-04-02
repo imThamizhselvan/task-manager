@@ -4,6 +4,7 @@
   "homepage": "https://thamizhselvan93.github.io/task-manager",
   "private": true,
   "dependencies": {
+    "firebase": "5.9.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-modal": "^3.8.1",

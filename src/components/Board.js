@@ -9,7 +9,7 @@ export default class Board extends Component {
             <p> Task board </p>
             <List title="To do" cat="todo" />
             <List title="Work in Progress" cat="wip" />
-            <List title="Completed" cat="completed"/>
+            <List title="Completed" cat="comp"/>
         </BoardWrapper>
     );
   }
