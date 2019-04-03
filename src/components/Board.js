@@ -3,7 +3,7 @@ import List from './List';
 import Modal from 'react-modal';
 import Card from './Card';
 import { db } from '../firebase';
-import { Wrapper, BoardWrapper, SingleLineInput, MultiLineInput, AddComment, CloseIcon } from './styles';
+import { BoardWrapper} from './styles';
 
 const customStyles = {
   content : {
@@ -46,8 +46,12 @@ export default class Board extends Component {
     .onSnapshot((querySnapshot) => {    
       this.setState({ todo: []});
       querySnapshot.forEach((doc) => {
+        doc = {
+          ...doc.data(),
+          id: doc.id
+        }
         this.setState({
-          todo: [...this.state.todo, doc.data() ],
+          todo: [...this.state.todo, doc ],
         });
       });
     });
@@ -55,8 +59,12 @@ export default class Board extends Component {
     .onSnapshot((querySnapshot) => {    
       this.setState({ wip: []});
       querySnapshot.forEach((doc) => {
+        doc = {
+          ...doc.data(),
+          id: doc.id
+        }
         this.setState({
-          wip: [...this.state.wip, doc.data() ],
+          wip: [...this.state.wip, doc ],
         });
       });
     });
@@ -64,8 +72,12 @@ export default class Board extends Component {
     .onSnapshot((querySnapshot) => { 
       this.setState({ comp: []});   
       querySnapshot.forEach((doc) => {
+        doc = {
+          ...doc.data(),
+          id: doc.id
+        }
         this.setState({
-          comp: [...this.state.comp, doc.data() ],
+          comp: [...this.state.comp, doc ],
         });
       });
     });

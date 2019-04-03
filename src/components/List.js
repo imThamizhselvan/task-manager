@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Card from './Card';
 import { db } from '../firebase';
-import { ListWrapper, CloseIcon, CardDescWrapper, AddComment } from './styles';
+import { ListWrapper, CloseIcon, CardDescWrapper } from './styles';
 
 const customStyles = {
   content : {
@@ -37,7 +37,7 @@ export default class List extends Component {
   }
 
   onDragStart = (task) => {
-    dragTaskKey = task.title;
+    dragTaskKey = task.id;
   }
 
   onDragOver = (ev, cat) => {
@@ -45,28 +45,16 @@ export default class List extends Component {
   }
 
   onDrop = (ev, cat) => {
-    db.collection('tasks').where('title', '==', dragTaskKey)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-          var updateData = db.collection("tasks").doc(doc.id);
-          return updateData.update({
-            status: cat,
-          })
-          .then(function() {
-              console.log("Document successfully updated!");
-          })
-          .catch(function(error) {
-              console.error("Error updating document: ", error);
-          });
-      });
+    var updateData = db.collection("tasks").doc(dragTaskKey);
+    return updateData.update({
+      status: cat,
+    })
+    .then(function() {
+        console.log("Document successfully updated!");
     })
     .catch(function(error) {
-      console.log("Error getting documents: ", error);
+        console.error("Error updating document: ", error);
     });
-
-
-    ev.preventDefault();
   }
 
   render() {
@@ -80,7 +68,6 @@ export default class List extends Component {
           onRequestClose={this.closeModal}
           style={customStyles}
           ariaHideApp={false}
-          status={this.props.cat}
         >
           <Card closeModal={this.closeModal} status={this.props.cat} edit={false} />
         </Modal>

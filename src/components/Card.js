@@ -13,26 +13,19 @@ export default class Card extends Component {
   }
 
   onSubmit = () => {
+    console.log('this', this);
     if (this.props.edit) {
-      db.collection('tasks').where('title', '==', this.props.task[0].title)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            var updateData = db.collection("tasks").doc(doc.id);
-            return updateData.update({
-              desc: this.state.taskDesc,
-              title: this.state.taskTitle,
-            })
-            .then(function() {
-                console.log("Document successfully updated!");
-            })
-            .catch(function(error) {
-                console.error("Error updating document: ", error);
-            });
-        });
+      var updateTasks = db.collection("tasks").doc(this.props.task[0].id);
+      return updateTasks.update({
+        desc: this.state.taskDesc,
+        title: this.state.taskTitle,
+      })
+      .then(() => {
+          console.log("Document successfully updated!");
+          this.props.closeModal();
       })
       .catch(function(error) {
-        console.log("Error getting documents: ", error);
+          console.error("Error updating document: ", error);
       });
     } else {
       db.collection('tasks').add({
@@ -85,8 +78,6 @@ export default class Card extends Component {
       })
     }
   }
-
-  
 
   render() {
     return (
