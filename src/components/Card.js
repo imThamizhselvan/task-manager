@@ -8,7 +8,8 @@ export default class Card extends Component {
     this.setState({
       taskTitle: '',
       taskDesc: '',
-      deleteTask: ''
+      deleteTask: '',
+      taskCat: ''
     })
   }
 
@@ -19,6 +20,7 @@ export default class Card extends Component {
       return updateTasks.update({
         desc: this.state.taskDesc,
         title: this.state.taskTitle,
+        cat: this.state.taskCat
       })
       .then(() => {
           console.log("Document successfully updated!");
@@ -33,7 +35,8 @@ export default class Card extends Component {
         currentOwner: "thamizh",
         desc: this.state.taskDesc,
         title: this.state.taskTitle,
-        status: this.props.status
+        status: this.props.status,
+        cat: this.state.taskCat
       })
       .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -69,12 +72,14 @@ export default class Card extends Component {
     if (this.props.task && this.props.task.length > 0) {
       this.setState({
         taskTitle: this.props.task[0].title,
-        taskDesc: this.props.task[0].desc
+        taskDesc: this.props.task[0].desc,
+        taskCat: this.props.task[0].cat
       })
     } else {
       this.setState({
         taskTitle: '',
-        taskDesc: ''
+        taskDesc: '',
+        taskCat: ''
       })
     }
   }
@@ -82,12 +87,14 @@ export default class Card extends Component {
   render() {
     return (
       <Wrapper>
-        <CloseIcon onClick={this.props.closeModal}><i class="fa fa-close"></i></CloseIcon>
-        <CloseIcon onClick={this.deleteTask}><i class="fa fa-trash"></i></CloseIcon>
-        <p> Task Title </p>
+        <CloseIcon onClick={this.props.closeModal}><i className="fa fa-close"></i></CloseIcon>
+        <CloseIcon onClick={this.deleteTask}><i className="fa fa-trash"></i></CloseIcon>
+        <p> Title </p>
         <SingleLineInput value={this.state.taskTitle} onChange={(evt) => this.setState({ taskTitle: evt.target.value })} />
-        <p> Task Description </p>
+        <p> Description </p>
         <MultiLineInput value={this.state.taskDesc} onChange={(evt) => this.setState({ taskDesc: evt.target.value })} />
+        <p> Category </p>
+        <SingleLineInput value={this.state.taskCat} onChange={(evt) => this.setState({ taskCat: evt.target.value })} />
         <AddComment onClick={this.onSubmit}> Add Task </AddComment>
       </Wrapper>
     );
