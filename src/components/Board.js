@@ -20,19 +20,25 @@ export default class Board extends Component {
       modalIsOpen: false,
       todo: [], 
       wip: [],
-      comp: []
+      comp: [],
+      current: []
     };
-    this.openModal = this.openModal.bind(this);
+    this.editModal = this.editModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal(task) {
-    console.log('task', task)
-    this.setState({modalIsOpen: true});
+  editModal(task) {
+    this.setState({
+      current: [...this.state.current, task],
+      modalIsOpen: true
+    });
   }
   
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({
+      current: [],
+      modalIsOpen: false
+    });
   }
 
   componentDidMount() {
@@ -66,7 +72,6 @@ export default class Board extends Component {
   }
 
   render() {
-    console.log('this.state board', this.state);
     return (
         <BoardWrapper>
           <Modal
@@ -75,12 +80,12 @@ export default class Board extends Component {
             style={customStyles}
             ariaHideApp={false}
           >
-            <Card closeModal={this.closeModal} status={this.props.cat} />
+            <Card closeModal={this.closeModal} status={this.props.cat} task={this.state.current} edit={true} />
           </Modal>
           <p> Task board </p>
-          <List title="To do" tasks={this.state.todo} cat="todo" openModals={this.openModal} />
-          <List title="Work in Progress" tasks={this.state.wip} cat="wip" openModals={this.openModal}/>
-          <List title="Completed" tasks={this.state.comp} cat="comp" openModals={this.openModal}/>
+          <List title="To do" tasks={this.state.todo} cat="todo" openModals={this.editModal} />
+          <List title="Work in Progress" tasks={this.state.wip} cat="wip" openModals={this.editModal}/>
+          <List title="Completed" tasks={this.state.comp} cat="comp" openModals={this.editModal}/>
         </BoardWrapper>
     );
   }
