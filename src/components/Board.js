@@ -3,15 +3,7 @@ import List from './List';
 import Modal from 'react-modal';
 import Card from './Card';
 import { db } from '../firebase';
-import { BoardWrapper} from './styles';
-
-const customStyles = {
-  content : {
-    overflow: 'hidden',
-    margin: '6%',
-    border: 'none',
-  }
-};
+import { BoardWrapper, BoardTitle} from './styles';
 
 export default class Board extends Component {
   constructor() {
@@ -20,6 +12,7 @@ export default class Board extends Component {
       modalIsOpen: false,
       todo: [], 
       wip: [],
+      test: [],
       comp: [],
       current: []
     };
@@ -81,24 +74,37 @@ export default class Board extends Component {
         });
       });
     });
+    db.collection('tasks').where('status', '==', 'test')
+    .onSnapshot((querySnapshot) => { 
+      this.setState({ test: []});   
+      querySnapshot.forEach((doc) => {
+        doc = {
+          ...doc.data(),
+          id: doc.id
+        }
+        this.setState({
+          test: [...this.state.test, doc ],
+        });
+      });
+    });
   }
 
   render() {
     return (
-        <BoardWrapper>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            ariaHideApp={false}
-          >
-            <Card closeModal={this.closeModal} status={this.props.cat} task={this.state.current} edit={true} />
-          </Modal>
-          <p> Task board </p>
-          <List title="To do" tasks={this.state.todo} cat="todo" openModals={this.editModal} />
-          <List title="Work in Progress" tasks={this.state.wip} cat="wip" openModals={this.editModal}/>
-          <List title="Completed" tasks={this.state.comp} cat="comp" openModals={this.editModal}/>
-        </BoardWrapper>
+      <BoardWrapper>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          ariaHideApp={false}
+        >
+          <Card closeModal={this.closeModal} status={this.props.cat} task={this.state.current} edit={true} />
+        </Modal>
+        <BoardTitle> Task board </BoardTitle>
+        <List title="To do" tasks={this.state.todo} cat="todo" openModals={this.editModal} />
+        <List title="Work in Progress" tasks={this.state.wip} cat="wip" openModals={this.editModal}/>
+        <List title="Testing" tasks={this.state.test} cat="test" openModals={this.editModal}/>
+        <List title="Completed" tasks={this.state.comp} cat="comp" openModals={this.editModal}/>
+      </BoardWrapper>
     );
   }
 }

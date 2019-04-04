@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Card from './Card';
 import { db } from '../firebase';
-import { ListWrapper, CloseIcon, CardDescWrapper } from './styles';
-
-const customStyles = {
-  content : {
-    overflow: 'hidden',
-    margin: '6%',
-    border: 'none',
-  }
-};
+import { ListWrapper, CloseIcon, CardLayer, CardDescWrapper, Chip, CardDesc, CardTitle, ListTitle } from './styles';
 
 let dragTaskKey = '';
 
@@ -60,23 +52,25 @@ export default class List extends Component {
   render() {
     return (
       <ListWrapper onDragOver={(ev) => this.onDragOver(ev, this.props.cat)} onDrop={(ev) => this.onDrop(ev, this.props.cat)}>
-        <CloseIcon><i class="fa fa-trash"></i></CloseIcon>
-        <CloseIcon><i class="fa fa-plus" onClick={this.openModal}></i></CloseIcon>
-        <p> {this.props.title} </p>
+        <CloseIcon><i className="fa fa-plus" onClick={this.openModal}></i></CloseIcon>
+        <ListTitle> {this.props.title} </ListTitle>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
-          style={customStyles}
           ariaHideApp={false}
         >
           <Card closeModal={this.closeModal} status={this.props.cat} edit={false} />
         </Modal>
-        { this.props.tasks.map((task) =>
-          <CardDescWrapper onClick={() => this.handleEditModal(task)} draggable={true} onDragStart={()=> this.onDragStart(task)}> 
-            <p> {task.title} </p>
-            <p> {task.desc} </p>
+        <CardLayer>
+
+        { this.props.tasks.map((task, i) =>
+          <CardDescWrapper cat={task.cat} key={i} onClick={() => this.handleEditModal(task)} draggable={true} onDragStart={()=> this.onDragStart(task)}> 
+            <Chip cat={task.cat}> {task.cat || 'Development'} </Chip>
+            <CardTitle> {task.title} </CardTitle>
+            <CardDesc> -> {task.desc} </CardDesc>
           </CardDescWrapper>    
         )}
+        </CardLayer>
       </ListWrapper>
     );
   }
