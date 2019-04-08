@@ -13,15 +13,15 @@ export default class Home extends Component {
       activity: [],
     };
   }
+  
   componentDidMount() {
     let key = localStorage.getItem('access_token');
     fetch(activity_API + key)
       .then(response => response.json())
-      .then(data => this.setState({ ...this.state.activity, data }));
+      .then(data => this.setState({ activity: data }));
   }
 
   render () {
-    console.log('this.state', this.state.data);
     return(
       <Wrapper>
         <SingleLayoutWrapper>
@@ -33,7 +33,7 @@ export default class Home extends Component {
           </HalfLayoutWrapper>
         </SingleLayoutWrapper>
         <SingleLayoutWrapper>
-          <Activity />
+          <Activity data={this.state.activity}/>
         </SingleLayoutWrapper>
         <SingleLayoutWrapper>
           <Twitter /> 
