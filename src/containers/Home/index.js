@@ -26,9 +26,6 @@ export default class Home extends Component {
       <Wrapper>
         <SingleLayoutWrapper>
           <HalfLayoutWrapper>
-            Task
-          </HalfLayoutWrapper>
-          <HalfLayoutWrapper>
             <TaskBox />
           </HalfLayoutWrapper>
         </SingleLayoutWrapper>

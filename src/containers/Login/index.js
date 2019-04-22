@@ -17,7 +17,7 @@ export default class Login extends Component {
       console.log('hit', result);
       console.log('hit2', user);
       localStorage.setItem("access_token", token);
-      history.push('/task');
+      history.push('/home');
       // ...
     }).catch(function(error) {
       // Handle Errors here.

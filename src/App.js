@@ -9,9 +9,9 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <Route path="/login"  component={Login} />
+        <Route exact path="/"  component={Login} />
         <Route path="/home"  component={Home} />
-        <Route exact path="/" component={Board} />
+        <Route path="/task" component={Board} />
       </Router>
     );
   }

@@ -32,7 +32,7 @@ export default class Activity extends Component {
           <PersonWrapper>
             <Propic alt="profile pic" src={item.actor.avatar_url} />
             <Name> {item.actor.display_login} </Name> 
-            <p> {this.handleActivityType(item.type)}</p>
+            <p> {this.handleActivityType(item.type)} <i> {item.repo.name} </i></p>
           </PersonWrapper>
         )}
       </ActivityWrapper>
