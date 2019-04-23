@@ -6,6 +6,17 @@ import { ListWrapper, CloseIcon, CardLayer, CardDescWrapper, Chip, CardDesc, Car
 
 let dragTaskKey = '';
 
+const customStyles = {
+  content : {
+    overflow: 'hidden',
+    margin: '2%',
+    'margin-left': '5%',
+    'margin-right': '5%',
+    border: 'none',
+    'background-color': '#f2f2f2'
+  }
+};
+
 export default class List extends Component {
   constructor() {
     super();
@@ -58,6 +69,7 @@ export default class List extends Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           ariaHideApp={false}
+          style={customStyles}
         >
           <Card closeModal={this.closeModal} status={this.props.cat} edit={false} />
         </Modal>
