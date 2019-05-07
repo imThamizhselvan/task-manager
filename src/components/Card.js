@@ -95,6 +95,8 @@ export default class Card extends Component {
         <MultiLineInput value={this.state.taskDesc} onChange={(evt) => this.setState({ taskDesc: evt.target.value })} />
         <p> Category </p>
         <SingleLineInput value={this.state.taskCat} onChange={(evt) => this.setState({ taskCat: evt.target.value })} />
+        <p> Category </p>
+        <SingleLineInput value={this.state.taskCat} onChange={(evt) => this.setState({ taskCat: evt.target.value })} />
         <AddComment onClick={this.onSubmit}> Add Task </AddComment>
       </Wrapper>
     );
