@@ -14,10 +14,10 @@ export default class Login extends Component {
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      console.log('hit', token);
+      console.log('hit', result);
       console.log('hit2', user);
       localStorage.setItem("access_token", token);
-      history.push('/task');
+      history.push('/home');
       // ...
     }).catch(function(error) {
       // Handle Errors here.

@@ -140,7 +140,6 @@ export const CloseIcon = styled.span`
     float: right;
     font-size: 20px;
     cursor: pointer;
-    color: #fff;
     margin-right: 20px;
     margin-top: 10px; 
 `;
